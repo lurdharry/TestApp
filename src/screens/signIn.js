@@ -55,19 +55,10 @@ export default class SignIn extends Component {
                   onBlur={()=> this.setState({password_focus: false})}
                   ref={ (input) => {this.passwordInput = input }}
             />
-            <View style={styles.remfor}>
-              <View style={{flexDirection:'row',alignItems:'center'}}>
-                  <TouchableOpacity 
-                    style={!this.state.remember?styles.remember_false:styles.remember_true} 
-                    onPress={()=>this.setState({remember:!this.state.remember})}
-                  />
-                  <Text style={styles.remText}>Remember me</Text>
-              </View>
-              <Text style={styles.forgot}>Forgot Password?</Text>
-            </View>
+
           {/* start of login Button */}
             <TouchableOpacity style={styles.loginButton}>
-                <Text style={styles.buttonText}>Login</Text>
+                <Text style={styles.buttonText}>LOGIN</Text>
             </TouchableOpacity>
           {/* end of login Button */}
           {/* start of new user */}

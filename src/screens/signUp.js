@@ -15,7 +15,8 @@ export default class SignUp extends Component {
     username_focus:false,
     password:'',
     password_focus:false,
-    remember:false
+    remember:false,
+    showModal:false
   }
   render() {
     return (
@@ -67,25 +68,48 @@ export default class SignUp extends Component {
             </View>
           {/* start of login Button */}
             <TouchableOpacity style={styles.loginButton}>
-                <Text style={styles.buttonText}>Login</Text>
+                <Text style={styles.buttonText}>SIGNUP</Text>
             </TouchableOpacity>
           {/* end of login Button */}
           {/* start of new user */}
           <View style={styles.new}>
-              <Text style={styles.username}>New user?</Text>
-              <TouchableOpacity onPress={()=>this.props.navigation.navigate('SignUp')}><Text style={styles.signUpText}>Signup</Text></TouchableOpacity>
+              <Text style={styles.username}> Existing user?</Text>
+              <TouchableOpacity onPress={()=>this.props.navigation.navigate('SignIn')}><Text style={styles.signUpText}>Signin</Text></TouchableOpacity>
           </View>
           {/* end of new user */}
         </ScrollView>
-        <View style={styles.bottomBox}>
+        <View style={styles.bottomBox}/>
 
-        </View>
+        {/* start of modal */}
+        {
+            this.state.showModal&&
+            <View style={styles.modalContainer}>
+                <View style={styles.modal}>
+
+                </View>
+            </View>
+        }
+        {/* end of modal */}
+
 
       </View>
     );
   }
 }
 const styles = StyleSheet.create({
+    modal:{
+        position:'absolute',
+        top:hp(380),
+        bottom:0,
+        backgroundColor:'#fff',
+        borderTopLeftRadius:hp(35),
+        borderTopRightRadius:hp(35)
+    },
+    modalContainer:{
+        height:'100%',
+        width:'100%',
+        color:'rgba(0, 0, 0, 0.2)'
+    },
   mark:{
     width:wp(16),
     height:wp(16)
