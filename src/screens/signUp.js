@@ -1,14 +1,8 @@
 import React, {Component} from 'react';
 import {View, StyleSheet,TouchableOpacity,Text,Image,TextInput,ScrollView } from 'react-native';
 import {widthPercentageToDP,heightPercentageToDP,} from 'react-native-responsive-screen'
+import {hp,wp} from './signIn'
 
-export const hp = num => {
-  return heightPercentageToDP((num / 812) * 100)
-}
-
-export const wp = num => {
-  return widthPercentageToDP((num / 375) * 100)
-}
 export default class SignUp extends Component {
   state={
     username:'',
