@@ -24,7 +24,7 @@ const CartData=[
     {
         name:'Grilled Turkey',
         topping:'Sauce and Pepper',
-        img:require('../assets/images/reco2.png'),
+        img:require('../assets/images/reco1.png'),
         price:3500
     },
     {
@@ -88,7 +88,7 @@ const CartItem=(props)=>{
             </View>
         </View>
         <View style={{flexDirection:'row',alignSelf:'center',alignItems:'center'}}>
-        <Text>NGN{toMoney(price)}</Text>
+        <Text>NGN {toMoney(price)}</Text>
             <TouchableOpacity style={styles.deleteButton}>
                 <Image style={styles.deleteIcon} resizeMode='contain' source={deleteIcon}/>
             </TouchableOpacity>
