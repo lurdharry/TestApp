@@ -19,7 +19,7 @@ export default class SignUp extends Component {
       <View style={styles.container}>
 
         <Image resizeMode='contain' style={styles.BgImage} source={require('../assets/images/BgImage.png')}/>
-        <ScrollView style={{flex:1}} style={styles.bottomView}>
+        <ScrollView style={styles.bottomView}>
             <Text style={styles.welcome}>Create your Account</Text>
             <Text>It’s free and easy to set up!</Text>
             {/* start of username input */}
@@ -37,7 +37,9 @@ export default class SignUp extends Component {
                   />
                   {
                     this.state.username.length>1&&
-                    <Image style={styles.mark} resizeMode='contain' source={require('../assets/images/mark.png')}/>
+                    <View style={styles.markView}>
+                      <Image style={styles.mark} resizeMode='contain' source={require('../assets/images/mark.png')}/>
+                    </View>
                   }
                 </View>
             </View>
@@ -164,10 +166,19 @@ const styles = StyleSheet.create({
         // bottom:0,
         backgroundColor:'rgba(0, 0, 0, 0.2)'
     },
-  mark:{
-    width:wp(16),
-    height:wp(16)
-  },
+    markView:{
+        alignItems:'center',
+        justifyContent:'center',
+        height:wp(16),
+        width:wp(16),
+        backgroundColor:'#73CC0B',
+        marginRight:wp(10),
+        borderRadius:wp(8)
+      },
+      mark:{
+        width:wp(8.31),
+        height:(5.82/8.31)*wp(8.31)
+      },
   bottomBox:{
     width:wp(375),
     // alignSelf:'flex-end',
@@ -199,7 +210,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     backgroundColor:'#E25F38',
     borderRadius:hp(9),
-    marginTop:hp(60),
+    marginTop:hp(30),
     marginBottom:hp(20),
     width:wp(300),
     height:(50/300)*wp(300),
@@ -278,6 +289,7 @@ const styles = StyleSheet.create({
   bottomView:{
     paddingHorizontal:wp(37),
     marginTop:hp(220),
+    flex:1
     // flex:1
     // paddingTop
 

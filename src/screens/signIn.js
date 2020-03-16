@@ -40,7 +40,9 @@ export default class SignIn extends Component {
                   />
                   {
                     this.state.username.length>1&&
-                    <Image style={styles.mark} resizeMode='contain' source={require('../assets/images/mark.png')}/>
+                    <View style={styles.markView}>
+                      <Image style={styles.mark} resizeMode='contain' source={require('../assets/images/mark.png')}/>
+                    </View>
                   }
                 </View>
             </View>
@@ -86,9 +88,19 @@ export default class SignIn extends Component {
   }
 }
 const styles = StyleSheet.create({
+  markView:{
+    alignItems:'center',
+    justifyContent:'center',
+    height:wp(16),
+    width:wp(16),
+    borderRadius:wp(8),
+    marginRight:wp(10),
+
+    backgroundColor:'#73CC0B'
+  },
   mark:{
-    width:wp(18),
-    height:(16/18)*wp(18)
+    width:wp(8.31),
+    height:(5.82/8.31)*wp(8.31)
   },
   bottomBox:{
     width:wp(375),
