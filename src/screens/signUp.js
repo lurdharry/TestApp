@@ -19,7 +19,7 @@ export default class SignUp extends Component {
       <View style={styles.container}>
 
         <Image resizeMode='contain' style={styles.BgImage} source={require('../assets/images/BgImage.png')}/>
-        <ScrollView style={styles.bottomView}>
+        <ScrollView style={{flex:1}} style={styles.bottomView}>
             <Text style={styles.welcome}>Create your Account</Text>
             <Text>It’s free and easy to set up!</Text>
             {/* start of username input */}
@@ -69,12 +69,12 @@ export default class SignUp extends Component {
                 <Text style={styles.buttonText}>SIGNUP</Text>
             </TouchableOpacity>
           {/* end of login Button */}
-          {/* start of new user */}
+          {/* start of existing user */}
           <View style={styles.new}>
               <Text style={styles.username}> Existing user?</Text>
               <TouchableOpacity onPress={()=>this.props.navigation.navigate('SignIn')}><Text style={styles.signUpText}>Signin</Text></TouchableOpacity>
           </View>
-          {/* end of new user */}
+          {/* end of existing user */}
         </ScrollView>
         <View style={styles.bottomBox}/>
 
@@ -123,6 +123,7 @@ const styles = StyleSheet.create({
         marginTop:hp(30)
     },
     instruction:{
+        marginHorizontal:wp(44),
         color:'#9DA8B6',
         opacity:.6,
         textAlign:'center',
