@@ -7,21 +7,36 @@ const TestMeal=[
     {
         name:'Cheese Burger',
         topping:'Beef, Veggies & Chilli',
-        img:require('../assets/images/cart.png'),
+        img:require('../assets/images/meal1.png'),
 
     },
     {
         name:'Jollof Rice',
         topping:'Grilled Chicken, Veggies & Sauce',
-        img:require('../assets/images/cart.png')
+        img:require('../assets/images/meal2.png')
     },
     {
         name:'Cheese Burger',
         topping:'Beef, Veggies & Chilli',
-        img:require('../assets/images/cart.png')
+        img:require('../assets/images/meal1.png')
     },
 
 ]
+const RecommendedMeal=[
+    {
+        img:require('../assets/images/reco1.png')
+    },
+    {
+        img:require('../assets/images/reco2.png')
+    },
+    {
+        img:require('../assets/images/reco1.png')
+    },
+    {
+        img:require('../assets/images/reco2.png')
+    }
+]
+
 export default class Home extends Component {
     state={
         searchValue:''
@@ -29,10 +44,12 @@ export default class Home extends Component {
   render() {
       const cart =  require('../assets/images/cart.png')
       const searchIcon =  require('../assets/images/searchIcon.png')
+      const star =  require('../assets/images/star.png')
+
 
     return (
       <View style={styles.container}>
-        <ScrollView>
+        {/* <ScrollView> */}
         {/* start of cart Icon */}
         <TouchableOpacity style={styles.cartContainer}>
             <View/>
@@ -56,23 +73,89 @@ export default class Home extends Component {
 
         </View>
         {/* end of search box */}
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}
+            Style={{height:hp(300)}}
+        >
             {TestMeal.map((item,index)=>{
                 return(
                     <TouchableOpacity style={styles.mealItem}>
                         <Image source={item.img} resizeMode='contain' style={styles.mealImage}/>
+                        <View style={styles.bottomItems}>
+                            <Text style={styles.mealName}>{item.name}</Text>
+                            <Text style={styles.toppings}>{item.topping}</Text>
+                            <View style={{flexDirection:'row',marginTop:hp(6)}}>
+                                {
+                                [1,2,3,4,5].map((item,index)=>{
+                                    return(
+                                        <Image style={styles.star} resizeMode='contain' source={star}/>
+                                    )
+                                })
+                                    
+                                }
+                            </View>
+                        
+                        </View>
                     </TouchableOpacity>
+                    
                 )
             })}
+            {/* start of recommemned */}
+        <View >
+        <View style={styles.recView}>
+                <Text>Recommended</Text>
+                <TouchableOpacity>
+                    <Text>View all</Text>
+                </TouchableOpacity>
+            </View>
+            <ScrollView horizontal={true}>
+                {
+                    RecommendedMeal.map((item,index)=>{
+                        return(
+                            <View style={{marginVertical:hp(10),marginRight:wp(12)}}>
+                                <Image style={styles.recoImage}   resizeMode='contain' source={item.img}/>
+                            </View>
+               )
+              })
+            }
+
+
+             </ScrollView>
+        </View>
+        {/* end of recommended */}
             
         </ScrollView>
 
-        </ScrollView>
+
+        {/* </ScrollView> */}
       </View>
     );
   }
 }
 const styles = StyleSheet.create({
+    recoImage:{
+        width:wp(63),
+        height:wp(63)
+    },
+    recView:{
+        flexDirection:'row',
+        justifyContent:'space-between'
+    },
+    star:{
+        width:wp(11),
+        height:wp(11)
+    },
+    toppings:{
+        color:'#4A4A4A',
+        fontSize:hp(12)
+    },
+    mealName:{
+        color:'#4A4A4A',
+        fontSize:hp(14)
+    },
+    bottomItems:{
+        marginLeft:wp(22),
+        marginTop:hp(8)
+    },
     mealImage:{
         width:wp(308),
         height:(113/308)*wp(308)
@@ -80,7 +163,8 @@ const styles = StyleSheet.create({
     mealItem:{
         height:(192/308)*wp(308),
         width:wp(308),
-        borderRadius:hp(9)
+        borderRadius:hp(9),
+        marginBottom:hp(25)
     },
     searchInput:{
         width:wp(250),
@@ -98,7 +182,8 @@ const styles = StyleSheet.create({
         borderRadius:hp(9),
         flexDirection:'row',
         alignItems:'center',
-        paddingLeft:wp(16)
+        paddingLeft:wp(16),
+        marginBottom:hp(25)
     },
     info:{
         color:'#4A4A4A',
@@ -128,6 +213,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor:'#fff',
     paddingHorizontal:wp(27),
-    paddingTop:hp(20)
+    paddingVertical:hp(20),
   },
 });
