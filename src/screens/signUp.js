@@ -16,6 +16,8 @@ export default class SignUp extends Component {
     password:'',
     password_focus:false,
     remember:false,
+    email:'',
+    email_focus:false,
     showModal:false
   }
   render() {
@@ -46,6 +48,15 @@ export default class SignUp extends Component {
                 </View>
             </View>
             {/* end of username input */}
+            <TextInput
+                  style={!this.state.email_focus?styles.blurForm:styles.focusedForm}
+                  value={this.state.email}
+                  placeholder='Email'
+                  onChangeText={(text)=>this.setState({email:text})}
+                  onFocus={()=> this.setState({email_focus: true})}
+                  onBlur={()=> this.setState({email_focus: false})}
+                  ref={ (input) => {this.email = input }}
+            />
 
             <TextInput
                   style={!this.state.password_focus?styles.blurForm:styles.focusedForm}
@@ -56,18 +67,11 @@ export default class SignUp extends Component {
                   onBlur={()=> this.setState({password_focus: false})}
                   ref={ (input) => {this.passwordInput = input }}
             />
-            <View style={styles.remfor}>
-              <View style={{flexDirection:'row',alignItems:'center'}}>
-                  <TouchableOpacity 
-                    style={!this.state.remember?styles.remember_false:styles.remember_true} 
-                    onPress={()=>this.setState({remember:!this.state.remember})}
-                  />
-                  <Text style={styles.remText}>Remember me</Text>
-              </View>
-              <Text style={styles.forgot}>Forgot Password?</Text>
-            </View>
+
           {/* start of login Button */}
-            <TouchableOpacity style={styles.loginButton}>
+            <TouchableOpacity style={styles.loginButton}
+                onPress={()=>this.setState({showModal:true})}
+            >
                 <Text style={styles.buttonText}>SIGNUP</Text>
             </TouchableOpacity>
           {/* end of login Button */}
@@ -85,7 +89,20 @@ export default class SignUp extends Component {
             this.state.showModal&&
             <View style={styles.modalContainer}>
                 <View style={styles.modal}>
-
+                    <View style={styles.rectangele}/>
+                    <Image
+                        resizeMode='contain'
+                        style={styles.illustration}
+                        source={require('../assets/images/illustration.png')}
+                    />
+                    <Text style={styles.defaultText}>Default Wallet Selection</Text>
+                    <Text style={styles.instruction}>If you proceed, All cards transactions will be charged from the selected wallet.</Text>
+                    <TouchableOpacity style={styles.confirmButton}>
+                        <Text style={[styles.buttonText,{color:'#E25F38'}]}>CONFIRM</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={()=>this.setState({showModal:false})} style={{alignSelf:'center',marginTop:hp(15)}}>
+                        <Text style={styles.cancel}>Click here to cancel</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         }
@@ -97,18 +114,60 @@ export default class SignUp extends Component {
   }
 }
 const styles = StyleSheet.create({
+    cancel:{
+        color:'#E25F38',
+        fontSize:hp(12)
+    },
+    confirmButton:{
+        width:wp(326),
+        alignItems:'center',
+        justifyContent:'center',
+        alignSelf:'center',
+        height:(52/326)*wp(326),
+        backgroundColor:'#FDF3F1',
+        borderRadius:hp(4),
+        marginTop:hp(30)
+    },
+    instruction:{
+        color:'#9DA8B6',
+        opacity:.6,
+        textAlign:'center',
+        marginTop:hp(15)
+    },
+    defaultText:{
+        alignSelf:'center',
+        color:'#575A65',
+        fontSize:hp(20),
+        fontWeight:'500'
+    },
+    illustration:{
+        width:wp(160),
+        height:(120/160)*wp(160),
+        alignSelf:'center',
+        marginTop:hp(24)
+    },
+    rectangele:{
+        alignSelf:'center',
+        width:wp(36),
+        height:(5/36)*wp(36),
+        backgroundColor:'#E0E6ED',
+        borderRadius:hp(10)
+    },
     modal:{
-        position:'absolute',
-        top:hp(380),
+        paddingTop:hp(15),
+        top:hp(320),
         bottom:0,
+        height:(450/375)*wp(375),
         backgroundColor:'#fff',
         borderTopLeftRadius:hp(35),
         borderTopRightRadius:hp(35)
     },
     modalContainer:{
+        position:'absolute',
         height:'100%',
         width:'100%',
-        color:'rgba(0, 0, 0, 0.2)'
+        // bottom:0,
+        backgroundColor:'rgba(0, 0, 0, 0.2)'
     },
   mark:{
     width:wp(16),
@@ -116,7 +175,9 @@ const styles = StyleSheet.create({
   },
   bottomBox:{
     width:wp(375),
-    alignSelf:'flex-end',
+    // alignSelf:'flex-end',
+    position:'absolute',
+    bottom:0,
     height:(50/375)*wp(375),
     backgroundColor:'#FDF3F1',
     marginTop:hp(20)
@@ -187,7 +248,7 @@ const styles = StyleSheet.create({
     width:wp(305),
     borderBottomWidth:hp(1.5),
     color:'#E25F38',
-    fontSize:hp(24),
+    fontSize:hp(14),
     flexDirection:'row',
     justifyContent:'space-between',
     alignItems:'center'
@@ -196,7 +257,7 @@ const styles = StyleSheet.create({
     width:wp(305),
     borderBottomWidth:hp(1.5),
     borderColor:'#E25F38',
-    fontSize:hp(24),
+    fontSize:hp(14),
     flexDirection:'row',
     justifyContent:'space-between',
     alignItems:'center'  
@@ -222,6 +283,7 @@ const styles = StyleSheet.create({
   bottomView:{
     paddingHorizontal:wp(37),
     marginTop:hp(220),
+    // flex:1
     // paddingTop
 
   },

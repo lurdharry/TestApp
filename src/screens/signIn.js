@@ -30,7 +30,7 @@ export default class SignIn extends Component {
                 <Text>Username</Text>
                 <View style={!this.state.username_focus?styles.blurForm:styles.focusedForm}>
                   <TextInput
-                    style={{width:wp(250)}}
+                    style={{width:wp(200)}}
                     value={this.state.username}
                     onChangeText={(text)=>this.setState({username:text})}
                     onFocus={()=> this.setState({username_focus: true})}
@@ -55,7 +55,16 @@ export default class SignIn extends Component {
                   onBlur={()=> this.setState({password_focus: false})}
                   ref={ (input) => {this.passwordInput = input }}
             />
-
+            <View style={styles.remfor}>
+              <View style={{flexDirection:'row',alignItems:'center'}}>
+                  <TouchableOpacity 
+                    style={!this.state.remember?styles.remember_false:styles.remember_true} 
+                    onPress={()=>this.setState({remember:!this.state.remember})}
+                  />
+                  <Text style={styles.remText}>Remember me</Text>
+              </View>
+              <Text style={styles.forgot}>Forgot Password?</Text>
+            </View>
           {/* start of login Button */}
             <TouchableOpacity style={styles.loginButton}>
                 <Text style={styles.buttonText}>LOGIN</Text>
@@ -78,8 +87,8 @@ export default class SignIn extends Component {
 }
 const styles = StyleSheet.create({
   mark:{
-    width:wp(16),
-    height:wp(16)
+    width:wp(18),
+    height:(16/18)*wp(18)
   },
   bottomBox:{
     width:wp(375),
@@ -154,7 +163,7 @@ const styles = StyleSheet.create({
     width:wp(305),
     borderBottomWidth:hp(1.5),
     color:'#E25F38',
-    fontSize:hp(24),
+    fontSize:hp(14),
     flexDirection:'row',
     justifyContent:'space-between',
     alignItems:'center'
@@ -163,7 +172,7 @@ const styles = StyleSheet.create({
     width:wp(305),
     borderBottomWidth:hp(1.5),
     borderColor:'#E25F38',
-    fontSize:hp(24),
+    fontSize:hp(14),
     flexDirection:'row',
     justifyContent:'space-between',
     alignItems:'center'  
