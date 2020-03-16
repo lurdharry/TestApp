@@ -247,7 +247,7 @@ const styles = StyleSheet.create({
   blurForm:{
     width:wp(305),
     borderBottomWidth:hp(1.5),
-    color:'#E25F38',
+    // color:'#E25F38',
     fontSize:hp(14),
     flexDirection:'row',
     justifyContent:'space-between',
@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
   focusedForm:{
     width:wp(305),
     borderBottomWidth:hp(1.5),
-    borderColor:'#E25F38',
+    // borderColor:'#E25F38',
     fontSize:hp(14),
     flexDirection:'row',
     justifyContent:'space-between',
