@@ -60,7 +60,7 @@ export default class MyOrders extends Component {
           </View>
           {/* start of total */}
           <View style={styles.totalView}>
-              <Text>Total</Text>
+              <Text>Total:</Text>
               <Text style={styles.totalAmount}>NGN 20,000</Text>
 
           </View>
