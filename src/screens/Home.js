@@ -51,7 +51,7 @@ export default class Home extends Component {
       <View style={styles.container}>
         {/* <ScrollView> */}
         {/* start of cart Icon */}
-        <TouchableOpacity style={styles.cartContainer}>
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate('MyOrders')} style={styles.cartContainer}>
             <View/>
             <Image source={cart} resizeMode='contain' style={styles.cart}/>
 

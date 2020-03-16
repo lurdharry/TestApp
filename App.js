@@ -18,7 +18,9 @@ class App extends Component {
   }
 }
 export default App
-
+export const toMoney =(num)=>{
+  return  num.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  }
 const styles = StyleSheet.create({
   container: {
     flex: 1,

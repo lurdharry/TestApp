@@ -2,31 +2,35 @@ import React, {Component} from 'react';
 import {View, StyleSheet,TouchableOpacity,Text,Image,TextInput,ScrollView } from 'react-native';
 import {widthPercentageToDP,heightPercentageToDP,} from 'react-native-responsive-screen'
 import {hp,wp} from './signIn'
+import {tomoney, toMoney} from '../../App'
 
-const CartItem=[
+
+const deleteIcon =require('../assets/images/delete.png')
+
+const CartData=[
     {
         name:'Cheese Burger',
         topping:'Beef, Veggies & Chilli',
-        img:require('../assets/images/meal1.png'),
+        img:require('../assets/images/reco1.png'),
         price:2000
 
     },
     {
-        name:'Jollof Rice',
-        topping:'Grilled Chicken, Veggies & Sauce',
-        img:require('../assets/images/meal2.png'),
+        name:'Large Pizza',
+        topping:'Extra Cheese & Toppings',
+        img:require('../assets/images/reco2.png'),
         price:2070
     },
     {
-        name:'Cheese Burger',
-        topping:'Beef, Veggies & Chilli',
-        img:require('../assets/images/meal1.png'),
+        name:'Grilled Turkey',
+        topping:'Sauce and Pepper',
+        img:require('../assets/images/reco2.png'),
         price:3500
     },
     {
-        name:'Cheese Burger',
-        topping:'Beef, Veggies & Chilli',
-        img:require('../assets/images/meal1.png'),
+        name:'Peppersoup',
+        topping:'Beef & Mutton',
+        img:require('../assets/images/reco2.png'),
         price:3500
     },
 
@@ -35,91 +39,149 @@ const CartItem=[
 export default class MyOrders extends Component {
   render() {
 
+    const img =require('../assets/images/reco1.png')
 
     return (
       <View style={styles.container}>
+          <Text style={styles.topText}>My Orders</Text>
+          <Text style={styles.instruc}>Welcome to your cart, preview items below.</Text>
+          <View  >
+                {
+                    CartData.map((item,index)=>{
+                        return(
+                            <CartItem
+                                details={item}
+                                key={index}
+                                deleteIcon={deleteIcon}
+                            />
+                        )
+                    })
+                }
+          </View>
+          {/* start of total */}
+          <View style={styles.totalView}>
+              <Text>Total</Text>
+              <Text style={styles.totalAmount}>NGN 20,000</Text>
 
+          </View>
+          {/* end of total */}
+          {/* start of checkout button */}
+          <TouchableOpacity style={styles.loginButton}>
+              <Text style={styles.buttonText} >CHECKOUT</Text>
+          </TouchableOpacity>
+          {/* end of checkout */}
+
+        <View style={styles.bottomBox}/>
       </View>
     );
   }
 }
-const styles = StyleSheet.create({
-    recoImage:{
-        width:wp(63),
-        height:wp(63)
-    },
-    recView:{
-        flexDirection:'row',
-        justifyContent:'space-between'
-    },
-    star:{
-        width:wp(11),
-        height:wp(11)
-    },
-    toppings:{
-        color:'#4A4A4A',
-        fontSize:hp(12)
-    },
-    mealName:{
-        color:'#4A4A4A',
-        fontSize:hp(14)
-    },
-    bottomItems:{
-        marginLeft:wp(22),
-        marginTop:hp(8)
-    },
-    mealImage:{
-        width:wp(308),
-        height:(113/308)*wp(308)
-    },
-    mealItem:{
-        height:(192/308)*wp(308),
-        width:wp(308),
-        borderRadius:hp(9),
-        marginBottom:hp(25)
-    },
-    searchInput:{
-        width:wp(250),
-        marginLeft:wp(10)
+const CartItem=(props)=>{
+    const{name,topping,price,img}=props.details
+    return(
+        <View style={styles.cartItems}>
+        <View style={{flexDirection:'row'}}>
+            <Image style={styles.cartImage} resizeMode='contain' source={img}/>
+            <View style={{marginLeft:wp(15),alignSelf:'center'}}>
+                <Text style={styles.itemName}>{name}</Text>
+                <Text style={styles.itemToppings}>{topping}</Text>
+            </View>
+        </View>
+        <View style={{flexDirection:'row',alignSelf:'center',alignItems:'center'}}>
+        <Text>NGN{toMoney(price)}</Text>
+            <TouchableOpacity style={styles.deleteButton}>
+                <Image style={styles.deleteIcon} resizeMode='contain' source={deleteIcon}/>
+            </TouchableOpacity>
+        </View>
+
         
-    },
-    searchIcon:{
-        width:wp(15),
-        height:wp(15)
-    },
-    searchBox:{
-        width:wp(307),
-        height:(41/307)*wp(307),
-        backgroundColor:'#F6F6F6',
+
+    </View>
+
+    )
+}
+const styles = StyleSheet.create({
+    buttonText:{
+        color:'#fff',
+        fontSize:hp(14),
+        fontWeight:'500',
+      },
+      loginButton:{
+        alignItems:'center',
+        justifyContent:'center',
+        backgroundColor:'#E25F38',
+        alignSelf:'center',
         borderRadius:hp(9),
+        marginTop:hp(30),
+        marginBottom:hp(20),
+        width:wp(300),
+        height:(50/300)*wp(300),
+      },
+    totalAmount:{
+        fontSize:hp(23),
+        lineHeight:hp(27),
+        color:'#4A4A4A',
+        fontWeight:'bold'
+    },
+    totalView:{
         flexDirection:'row',
         alignItems:'center',
-        paddingLeft:wp(16),
-        marginBottom:hp(25)
+        justifyContent:'space-between',
+        marginTop:hp(30)
     },
-    info:{
+    cartImage:{
+        width:wp(39),
+        height:(43/39)*wp(39)
+    },
+    deleteIcon:{
+        width:wp(11),
+        height:(14/11)*wp(11)
+    },
+    deleteButton:{
+        width:wp(30),
+        height:wp(30),
+        borderRadius:wp(15),
+        alignItems:'center',
+        justifyContent:'center',
+        backgroundColor:'#F9E1DA',
+        marginLeft:wp(28)
+    },
+    itemToppings:{
+        color:'#4A4A4A',
+        fontSize:hp(12),
+    },
+    itemName:{
         color:'#4A4A4A',
         fontSize:hp(14),
-        fontWeight:'bold',
-        marginBottom:hp(24)
+        fontWeight:'bold'
     },
-    name:{
-        color:'#4A4A4A',
-        fontSize:hp(26),
-        fontWeight:'bold',
-        marginBottom:hp(8)
-    },
-    cart:{
-        width:wp(20),
-        height:(18.5/20)*wp(18.5),
-        // alignSelf:'flex-end'
-    },
-    cartContainer:{
-        // position:'absolute',
+    cartItems:{
         flexDirection:'row',
         justifyContent:'space-between',
-        
+        marginBottom:hp(30)
     },
+    instruc:{
+        color:'#4A4A4A',
+        fontSize:hp(14),
+        marginTop:hp(8),
+        marginBottom:hp(25)
+    },
+    topText:{
+        color:'#4A4A4A',
+        letterSpacing:wp(-0.52),
+        marginTop:hp(100),
+        fontSize:hp(26),
+        fontWeight:'bold'
+    },
+  bottomBox:{
+    width:wp(375),
+    // alignSelf:'flex-end',
+    position:'absolute',
+    bottom:0,
+    height:(50/375)*wp(375),
+    backgroundColor:'#FDF3F1',
+    marginTop:hp(20)
+  },
   container: {
     
     flex: 1,
