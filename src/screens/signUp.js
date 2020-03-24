@@ -33,7 +33,7 @@ export default class SignUp extends Component {
                     onFocus={()=> this.setState({username_focus: true})}
                     onBlur={()=> this.setState({username_focus: false})}
                     ref={ (input) => {this.usernameInput = input }}
-                    onSubmitEditing={()=>this.passwordInput.focus()}
+                    onSubmitEditing={()=>this.email.focus()}
                   />
                   {
                     this.state.username.length>1&&
@@ -52,6 +52,8 @@ export default class SignUp extends Component {
                   onFocus={()=> this.setState({email_focus: true})}
                   onBlur={()=> this.setState({email_focus: false})}
                   ref={ (input) => {this.email = input }}
+                  onSubmitEditing={()=>this.passwordInput.focus()}
+
             />
 
             <TextInput

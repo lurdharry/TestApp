@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {View, StyleSheet,TouchableOpacity,Text,Image,TextInput,ScrollView } from 'react-native';
 import {widthPercentageToDP,heightPercentageToDP,} from 'react-native-responsive-screen'
-import {hp,wp} from './signIn'
-import FoodCard from '../Components/FoodCard'
+import {hp,wp} from '../screens/signIn'
 
 const TestMeal=[
     {
@@ -23,96 +22,38 @@ const TestMeal=[
     },
 
 ]
-const RecommendedMeal=[
-    {
-        img:require('../assets/images/reco1.png')
-    },
-    {
-        img:require('../assets/images/reco2.png')
-    },
-    {
-        img:require('../assets/images/reco1.png')
-    },
-    {
-        img:require('../assets/images/reco2.png')
-    }
-]
 
-export default class Home extends Component {
-    state={
-        searchValue:''
-    }
+
+export default class FoodCard extends Component {
   render() {
       const cart =  require('../assets/images/cart.png')
       const searchIcon =  require('../assets/images/searchIcon.png')
       const star =  require('../assets/images/star.png')
       const navigation=this.props.navigation;
-
+     const{details} = this.props
     return (
       <View style={styles.container}>
-        {/* <ScrollView> */}
-        {/* start of cart Icon */}
-        <TouchableOpacity onPress={()=>navigation.navigate('MyOrders')} style={styles.cartContainer}>
-            <View/>
-            <Image source={cart} resizeMode='contain' style={styles.cart}/>
-
-        </TouchableOpacity>
-        {/* end of cart icon */}
-        <Text style={styles.name}>Hello, John</Text>
-        <Text style={styles.info}>Select your meal for the day</Text>
-        {/* start of search box */}
-        <View style={styles.searchBox}>
-            <Image source={searchIcon} style={styles.searchIcon} resizeMode='contain' />
-            <TextInput
-                placeholder='search for meals, dishes'
-                placeholderTextColor='rgba(74, 74, 74, 0.521798)'
-                style={styles.searchInput}
-                value={this.state.searchValue}
-                onChangeText={(text)=>this.setState({searchValue:text})}
-            
-            />
-
-        </View>
-        {/* end of search box */}
-        <ScrollView showsVerticalScrollIndicator={false}
-            Style={{height:hp(300)}}
-        >
-            {
-                TestMeal.map((item,index)=>{
-                    return(
-                        <FoodCard
-                            details={item}
-                        />
-                    )
-                })
-            }
-            {/* start of recommemned */}
-        <View >
-        <View style={styles.recView}>
-                <Text>Recommended</Text>
-                <TouchableOpacity>
-                    <Text>View all</Text>
-                </TouchableOpacity>
-            </View>
-            <ScrollView horizontal={true}>
-                {
-                    RecommendedMeal.map((item,index)=>{
-                        return(
-                            <View style={{marginVertical:hp(10),marginRight:wp(12)}}>
-                                <Image style={styles.recoImage}   resizeMode='contain' source={item.img}/>
+            {/* {TestMeal.map((item,index)=>{
+                return( */}
+                    <TouchableOpacity style={styles.mealItem}>
+                        <Image source={details.img} resizeMode='contain' style={styles.mealImage}/>
+                        <View style={styles.bottomItems}>
+                            <Text style={styles.mealName}>{details.name}</Text>
+                            <Text style={styles.toppings}>{details.topping}</Text>
+                            <View style={{flexDirection:'row',marginTop:hp(6)}}>
+                                {
+                                    <Stars
+                                        star={star}
+                                    />
+                                }
                             </View>
-               )
-              })
-            }
-
-
-             </ScrollView>
-        </View>
-        {/* end of recommended */}
+                        
+                        </View>
+                    </TouchableOpacity>
+                    
+                {/* )
+            })} */}
             
-        </ScrollView>
-
-
         {/* </ScrollView> */}
       </View>
     );
@@ -216,6 +157,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor:'#fff',
     paddingHorizontal:wp(27),
-    paddingVertical:hp(20),
+    alignItems:'center'
+    // paddingVertical:hp(20),
   },
 });
