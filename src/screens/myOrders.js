@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import {View, StyleSheet,TouchableOpacity,Text,Image,TextInput,ScrollView } from 'react-native';
 import {widthPercentageToDP,heightPercentageToDP,} from 'react-native-responsive-screen'
 import {hp,wp} from './signIn'
-import {tomoney, toMoney} from '../../App'
+import {toMoney} from '../../App'
+import  {TTText,TRYText} from '../Components/customText'
+
 
 
 const deleteIcon =require('../assets/images/delete.png')
@@ -43,7 +45,7 @@ export default class MyOrders extends Component {
 
     return (
       <View style={styles.container}>
-          <Text style={styles.topText}>My Orders</Text>
+          <TRYText style={styles.topText}>My Orders</TRYText>
           <Text style={styles.instruc}>Welcome to your cart, preview items below.</Text>
           <View  >
                 {
@@ -60,14 +62,14 @@ export default class MyOrders extends Component {
           </View>
           {/* start of total */}
           <View style={styles.totalView}>
-              <Text>Total:</Text>
-              <Text style={styles.totalAmount}>NGN 20,000</Text>
+              <TTText>Total:</TTText>
+              <TTText style={styles.totalAmount}>NGN 20,000</TTText>
 
           </View>
           {/* end of total */}
           {/* start of checkout button */}
           <TouchableOpacity style={styles.loginButton}>
-              <Text style={styles.buttonText} >CHECKOUT</Text>
+              <TTText style={styles.buttonText} >CHECKOUT</TTText>
           </TouchableOpacity>
           {/* end of checkout */}
 
@@ -83,12 +85,12 @@ const CartItem=(props)=>{
         <View style={{flexDirection:'row'}}>
             <Image style={styles.cartImage} resizeMode='contain' source={img}/>
             <View style={{marginLeft:wp(15),alignSelf:'center'}}>
-                <Text style={styles.itemName}>{name}</Text>
-                <Text style={styles.itemToppings}>{topping}</Text>
+                <TTText style={styles.itemName}>{name}</TTText>
+                <TTText style={styles.itemToppings}>{topping}</TTText>
             </View>
         </View>
         <View style={{flexDirection:'row',alignSelf:'center',alignItems:'center'}}>
-        <Text>NGN {toMoney(price)}</Text>
+        <TTText>NGN {toMoney(price)}</TTText>
             <TouchableOpacity style={styles.deleteButton}>
                 <Image style={styles.deleteIcon} resizeMode='contain' source={deleteIcon}/>
             </TouchableOpacity>

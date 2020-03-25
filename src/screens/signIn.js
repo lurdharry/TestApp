@@ -1,14 +1,8 @@
 import React, {Component} from 'react';
 import {View, StyleSheet,TouchableOpacity,Text,Image,TextInput,ScrollView } from 'react-native';
 import {widthPercentageToDP,heightPercentageToDP,} from 'react-native-responsive-screen'
+import  {TTText,TRYText} from '../Components/customText'
 
-export const hp = num => {
-  return heightPercentageToDP((num / 812) * 100)
-}
-
-export const wp = num => {
-  return widthPercentageToDP((num / 375) * 100)
-}
 export default class SignIn extends Component {
   state={
     username:'',
@@ -23,11 +17,11 @@ export default class SignIn extends Component {
 
         <Image resizeMode='contain' style={styles.BgImage} source={require('../assets/images/BgImage.png')}/>
         <ScrollView style={styles.bottomView}>
-            <Text style={styles.welcome}>Welcome Back!</Text>
-            <Text>Login to your account</Text>
+            <TRYText style={styles.welcome}>Welcome Back!</TRYText>
+            <TTText>Login to your account</TTText>
             {/* start of username input */}
             <View style={styles.usernameBox}>
-                <Text>Username</Text>
+                <TTText>Username</TTText>
                 <View style={!this.state.username_focus?styles.blurForm:styles.focusedForm}>
                   <TextInput
                     style={{width:wp(200)}}
@@ -63,19 +57,21 @@ export default class SignIn extends Component {
                     style={!this.state.remember?styles.remember_false:styles.remember_true} 
                     onPress={()=>this.setState({remember:!this.state.remember})}
                   />
-                  <Text style={styles.remText}>Remember me</Text>
+                  <TTText style={styles.remText}>Remember me</TTText>
               </View>
-              <Text style={styles.forgot}>Forgot Password?</Text>
+              <TTText style={styles.forgot}>Forgot Password?</TTText>
             </View>
           {/* start of login Button */}
             <TouchableOpacity onPress={()=>this.props.navigation.navigate('Home')} style={styles.loginButton}>
-                <Text style={styles.buttonText}>LOGIN</Text>
+                <TTText style={styles.buttonText}>LOGIN</TTText>
             </TouchableOpacity>
           {/* end of login Button */}
           {/* start of new user */}
           <View style={styles.new}>
-              <Text style={styles.username}>New user?</Text>
-              <TouchableOpacity onPress={()=>this.props.navigation.navigate('SignUp')}><Text style={styles.signUpText}>Signup</Text></TouchableOpacity>
+              <TTText style={styles.username}>New user?</TTText>
+              <TouchableOpacity onPress={()=>this.props.navigation.navigate('SignUp')}>
+                <TTText style={styles.signUpText}>Signup</TTText>
+              </TouchableOpacity>
           </View>
           {/* end of new user */}
         </ScrollView>
@@ -230,3 +226,11 @@ const styles = StyleSheet.create({
     backgroundColor:'#fff'
   },
 });
+
+export const hp = num => {
+  return heightPercentageToDP((num / 812) * 100)
+}
+
+export const wp = num => {
+  return widthPercentageToDP((num / 375) * 100)
+}

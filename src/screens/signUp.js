@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, StyleSheet,TouchableOpacity,Text,Image,TextInput,ScrollView } from 'react-native';
 import {widthPercentageToDP,heightPercentageToDP,} from 'react-native-responsive-screen'
 import {hp,wp} from './signIn'
+import  {TTText,TRYText} from '../Components/customText'
 
 export default class SignUp extends Component {
   state={
@@ -20,11 +21,11 @@ export default class SignUp extends Component {
 
         <Image resizeMode='contain' style={styles.BgImage} source={require('../assets/images/BgImage.png')}/>
         <ScrollView style={styles.bottomView}>
-            <Text style={styles.welcome}>Create your Account</Text>
+            <TRYText style={styles.welcome}>Create your Account</TRYText>
             <Text>It’s free and easy to set up!</Text>
             {/* start of username input */}
             <View style={styles.usernameBox}>
-                <Text>Username</Text>
+                <TTText>Username</TTText>
                 <View style={!this.state.username_focus?styles.blurForm:styles.focusedForm}>
                   <TextInput
                     style={{width:wp(250)}}
@@ -70,13 +71,15 @@ export default class SignUp extends Component {
             <TouchableOpacity style={styles.loginButton}
                 onPress={()=>this.setState({showModal:true})}
             >
-                <Text style={styles.buttonText}>SIGNUP</Text>
+                <TTText style={styles.buttonText}>SIGNUP</TTText>
             </TouchableOpacity>
           {/* end of login Button */}
           {/* start of existing user */}
           <View style={styles.new}>
-              <Text style={styles.username}> Existing user?</Text>
-              <TouchableOpacity onPress={()=>this.props.navigation.navigate('SignIn')}><Text style={styles.signUpText}>Signin</Text></TouchableOpacity>
+              <TTText style={styles.username}> Existing user?</TTText>
+              <TouchableOpacity onPress={()=>this.props.navigation.navigate('SignIn')}>
+                <TTText style={styles.signUpText}>Signin</TTText>
+              </TouchableOpacity>
           </View>
           {/* end of existing user */}
         </ScrollView>
@@ -93,13 +96,13 @@ export default class SignUp extends Component {
                         style={styles.illustration}
                         source={require('../assets/images/illustration.png')}
                     />
-                    <Text style={styles.defaultText}>Default Wallet Selection</Text>
-                    <Text style={styles.instruction}>If you proceed, All cards transactions will be charged from the selected wallet.</Text>
+                    <TTText style={styles.defaultText}>Default Wallet Selection</TTText>
+                    <TTText style={styles.instruction}>If you proceed, All cards transactions will be charged from the selected wallet.</TTText>
                     <TouchableOpacity style={styles.confirmButton}>
-                        <Text style={[styles.buttonText,{color:'#E25F38'}]}>CONFIRM</Text>
+                        <TTText style={[styles.buttonText,{color:'#E25F38'}]}>CONFIRM</TTText>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=>this.setState({showModal:false})} style={{alignSelf:'center',marginTop:hp(15)}}>
-                        <Text style={styles.cancel}>Click here to cancel</Text>
+                        <TTText style={styles.cancel}>Click here to cancel</TTText>
                     </TouchableOpacity>
                 </View>
             </View>

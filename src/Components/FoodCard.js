@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, StyleSheet,TouchableOpacity,Text,Image,TextInput,ScrollView } from 'react-native';
 import {widthPercentageToDP,heightPercentageToDP,} from 'react-native-responsive-screen'
 import {hp,wp} from '../screens/signIn'
+import {TRYText,TTText} from './customText'
 
 const TestMeal=[
     {
@@ -38,8 +39,8 @@ export default class FoodCard extends Component {
                     <TouchableOpacity style={styles.mealItem}>
                         <Image source={details.img} resizeMode='contain' style={styles.mealImage}/>
                         <View style={styles.bottomItems}>
-                            <Text style={styles.mealName}>{details.name}</Text>
-                            <Text style={styles.toppings}>{details.topping}</Text>
+                            <TTText style={styles.mealName}>{details.name}</TTText>
+                            <TTText style={styles.toppings}>{details.topping}</TTText>
                             <View style={{flexDirection:'row',marginTop:hp(6)}}>
                                 {
                                     <Stars
