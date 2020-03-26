@@ -84,6 +84,7 @@ export default class Home extends Component {
                     return(
                         <FoodCard
                             details={item}
+                            key={index}
                         />
                     )
                 })
