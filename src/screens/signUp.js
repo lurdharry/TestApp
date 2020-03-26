@@ -22,10 +22,10 @@ export default class SignUp extends Component {
         <Image resizeMode='contain' style={styles.BgImage} source={require('../assets/images/BgImage.png')}/>
         <ScrollView style={styles.bottomView}>
             <TRYText style={styles.welcome}>Create your Account</TRYText>
-            <Text>It’s free and easy to set up!</Text>
+            <TTText style={styles.loginText}>It’s free and easy to set up!</TTText>
             {/* start of username input */}
             <View style={styles.usernameBox}>
-                <TTText>Username</TTText>
+                <TTText style={styles.username}>Username</TTText>
                 <View style={!this.state.username_focus?styles.blurForm:styles.focusedForm}>
                   <TextInput
                     style={{width:wp(250)}}
@@ -117,6 +117,7 @@ export default class SignUp extends Component {
 const styles = StyleSheet.create({
     cancel:{
         color:'#E25F38',
+        fontWeight:'500',
         fontSize:hp(12)
     },
     confirmButton:{
@@ -134,6 +135,8 @@ const styles = StyleSheet.create({
         color:'#9DA8B6',
         opacity:.6,
         textAlign:'center',
+        fontSize:hp(14),
+        lineHeight:hp(25),
         marginTop:hp(15)
     },
     defaultText:{
@@ -267,7 +270,7 @@ const styles = StyleSheet.create({
   focusedForm:{
     width:wp(305),
     borderBottomWidth:hp(1.5),
-    // borderColor:'#E25F38',
+    borderColor:'#E25F38',
     fontSize:hp(14),
     flexDirection:'row',
     justifyContent:'space-between',

@@ -91,10 +91,13 @@ const styles = StyleSheet.create({
     },
     toppings:{
         color:'#4A4A4A',
-        fontSize:hp(12)
+        fontSize:hp(12),
+        fontWeight:'normal'
     },
     mealName:{
         color:'#4A4A4A',
+        fontWeight:'bold',
+        // letterSpacing:wp(-0.28),
         fontSize:hp(14)
     },
     bottomItems:{

@@ -62,7 +62,7 @@ export default class MyOrders extends Component {
           </View>
           {/* start of total */}
           <View style={styles.totalView}>
-              <TTText>Total:</TTText>
+              <TTText style={styles.price}>Total:</TTText>
               <TTText style={styles.totalAmount}>NGN 20,000</TTText>
 
           </View>
@@ -90,7 +90,7 @@ const CartItem=(props)=>{
             </View>
         </View>
         <View style={{flexDirection:'row',alignSelf:'center',alignItems:'center'}}>
-        <TTText>NGN {toMoney(price)}</TTText>
+        <TTText style={styles.price}>NGN {toMoney(price)}</TTText>
             <TouchableOpacity style={styles.deleteButton}>
                 <Image style={styles.deleteIcon} resizeMode='contain' source={deleteIcon}/>
             </TouchableOpacity>
@@ -103,6 +103,13 @@ const CartItem=(props)=>{
     )
 }
 const styles = StyleSheet.create({
+    price:{
+        color:"#4A4A4A",
+        fontSize:hp(12),
+        fontWeight:'500',
+        letterSpacing:wp(-0.24),
+        lineHeight:hp(14)
+    },
     buttonText:{
         color:'#fff',
         fontSize:hp(14),
@@ -123,6 +130,7 @@ const styles = StyleSheet.create({
         fontSize:hp(23),
         lineHeight:hp(27),
         color:'#4A4A4A',
+        letterSpacing:wp(-0.46),
         fontWeight:'bold'
     },
     totalView:{

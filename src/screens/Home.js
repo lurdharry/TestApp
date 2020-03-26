@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {View, StyleSheet,TouchableOpacity,Text,Image,TextInput,ScrollView } from 'react-native';
 import {widthPercentageToDP,heightPercentageToDP,} from 'react-native-responsive-screen'
 import {hp,wp} from './signIn'
+import  {TTText,TRYText} from '../Components/customText'
+
 import FoodCard from '../Components/FoodCard'
 
 const TestMeal=[
@@ -58,8 +60,8 @@ export default class Home extends Component {
 
         </TouchableOpacity>
         {/* end of cart icon */}
-        <Text style={styles.name}>Hello, John</Text>
-        <Text style={styles.info}>Select your meal for the day</Text>
+        <TRYText style={styles.name}>Hello, John</TRYText>
+        <TTText style={styles.info}>Select your meal for the day</TTText>
         {/* start of search box */}
         <View style={styles.searchBox}>
             <Image source={searchIcon} style={styles.searchIcon} resizeMode='contain' />
@@ -89,16 +91,16 @@ export default class Home extends Component {
             {/* start of recommemned */}
         <View >
         <View style={styles.recView}>
-                <Text>Recommended</Text>
+                <TRYText style={styles.recoText}>Recommended</TRYText>
                 <TouchableOpacity>
-                    <Text>View all</Text>
+                    <TTText style={styles.viewall}>View all</TTText>
                 </TouchableOpacity>
             </View>
             <ScrollView horizontal={true}>
                 {
                     RecommendedMeal.map((item,index)=>{
                         return(
-                            <View style={{marginVertical:hp(10),marginRight:wp(12)}}>
+                            <View style={{marginVertical:hp(13),marginRight:wp(12)}}>
                                 <Image style={styles.recoImage}   resizeMode='contain' source={item.img}/>
                             </View>
                )
@@ -135,6 +137,16 @@ const Stars =(props)=>{
 
 
 const styles = StyleSheet.create({
+    viewall:{
+        color: '#4A4A4A',
+        fontSize:hp(14),
+        fontWeight:'normal'
+    },
+    recoText:{
+        color: '#4A4A4A',
+        fontSize:hp(14),
+        fontWeight:'bold'
+    },
     recoImage:{
         width:wp(63),
         height:wp(63)
@@ -171,6 +183,7 @@ const styles = StyleSheet.create({
     },
     searchInput:{
         width:wp(250),
+        fontFamily:'TTNorms',
         marginLeft:wp(10)
         
     },
@@ -191,7 +204,7 @@ const styles = StyleSheet.create({
     info:{
         color:'#4A4A4A',
         fontSize:hp(14),
-        fontWeight:'bold',
+        fontWeight:'normal',
         marginBottom:hp(24)
     },
     name:{

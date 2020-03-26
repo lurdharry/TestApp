@@ -3,6 +3,14 @@ import {View, StyleSheet,TouchableOpacity,Text,Image,TextInput,ScrollView } from
 import {widthPercentageToDP,heightPercentageToDP,} from 'react-native-responsive-screen'
 import  {TTText,TRYText} from '../Components/customText'
 
+export const hp = num => {
+  return heightPercentageToDP((num / 812) * 100)
+}
+
+export const wp = num => {
+  return widthPercentageToDP((num / 375) * 100)
+}
+
 export default class SignIn extends Component {
   state={
     username:'',
@@ -18,13 +26,13 @@ export default class SignIn extends Component {
         <Image resizeMode='contain' style={styles.BgImage} source={require('../assets/images/BgImage.png')}/>
         <ScrollView style={styles.bottomView}>
             <TRYText style={styles.welcome}>Welcome Back!</TRYText>
-            <TTText>Login to your account</TTText>
+            <TTText style={styles.loginText}>Login to your account</TTText>
             {/* start of username input */}
             <View style={styles.usernameBox}>
-                <TTText>Username</TTText>
+                <TTText style={styles.username}>Username</TTText>
                 <View style={!this.state.username_focus?styles.blurForm:styles.focusedForm}>
                   <TextInput
-                    style={{width:wp(200)}}
+                    style={{width:wp(200),fontFamily:'TTNorms',fontWeight:'500',color:'#4A4A4A',fontSize:hp(20)}}
                     value={this.state.username}
                     onChangeText={(text)=>this.setState({username:text})}
                     onFocus={()=> this.setState({username_focus: true})}
@@ -170,7 +178,8 @@ const styles = StyleSheet.create({
   blurForm:{
     width:wp(305),
     borderBottomWidth:hp(1.5),
-    color:'#E25F38',
+    // color:'#E25F38',
+    borderColor:'#EAEAEA',
     fontSize:hp(14),
     flexDirection:'row',
     justifyContent:'space-between',
@@ -227,10 +236,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export const hp = num => {
-  return heightPercentageToDP((num / 812) * 100)
-}
-
-export const wp = num => {
-  return widthPercentageToDP((num / 375) * 100)
-}
